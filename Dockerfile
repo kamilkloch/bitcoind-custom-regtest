@@ -1,29 +1,10 @@
-# Build stage for BerkeleyDB
-FROM alpine as berkeleydb
-
-RUN apk --no-cache add autoconf automake build-base
-
-ENV BERKELEYDB_VERSION=db-4.8.30.NC
-
-RUN wget https://download.oracle.com/berkeley-db/${BERKELEYDB_VERSION}.tar.gz
-RUN tar -xzf *.tar.gz \
-    && sed s/__atomic_compare_exchange/__atomic_compare_exchange_db/g -i ${BERKELEYDB_VERSION}/dbinc/atomic.h \
-    && mkdir -p /opt/db \
-    && cd /${BERKELEYDB_VERSION}/build_unix \
-    && ../dist/configure --enable-cxx --disable-shared --with-pic --prefix=/opt/db \
-    && make -j4 \
-    && make install \
-    && rm -rf /opt/db/docs
-
 # Build stage for Bitcoin Core
 FROM alpine as bitcoin-core
 
-COPY --from=berkeleydb /opt /opt
+RUN apk --no-cache add alpine-sdk autoconf automake pkgconfig python3 boost-dev build-base chrpath file \
+    gnupg libevent-dev libressl libressl-dev libtool protobuf-dev zeromq-dev sqlite-dev
 
-RUN apk --no-cache add autoconf automake boost-dev build-base chrpath file \
-    gnupg libevent-dev libressl libressl-dev libtool protobuf-dev zeromq-dev
-
-ENV BITCOIN_VERSION=0.19.1
+ENV BITCOIN_VERSION=23.0
 
 RUN wget https://github.com/bitcoin/bitcoin/archive/v${BITCOIN_VERSION}.tar.gz
 RUN tar -xzf *.tar.gz \
@@ -38,6 +19,7 @@ RUN tar -xzf *.tar.gz \
     --disable-ccache \
     --with-gui=no \
     --enable-util-cli \
+    --with-sqlite=yes \
     --with-daemon \
     && make -j4 \
     && make install \
