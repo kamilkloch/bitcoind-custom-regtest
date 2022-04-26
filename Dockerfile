@@ -29,7 +29,7 @@ RUN tar -xzf *.tar.gz \
 # Build stage for compiled artifacts
 FROM alpine
 
-RUN apk --no-cache add boost bash libevent libzmq libressl
+RUN apk --no-cache add boost bash libevent libzmq libressl jq
 ENV PATH=/opt/bitcoin/bin:$PATH
 
 COPY --from=bitcoin-core /opt /opt
