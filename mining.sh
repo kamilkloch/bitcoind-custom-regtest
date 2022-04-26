@@ -2,8 +2,9 @@
 # wait a while for the bitcoin node to bootstrap
 sleep 10
 
-# `generate` is deprecated in 0.18.0, we need to generate an address and
-# use generatetoaddress
+# Create miner's wallet
+bitcoin-cli -regtest -named createwallet wallet_name=regtest_miner_wallet load_on_startup=true
+
 BTC_ADDRESS=`bitcoin-cli -regtest getnewaddress`
 while true
 do
