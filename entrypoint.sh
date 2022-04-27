@@ -1,3 +1,4 @@
 #!/bin/bash
-/mining.sh &
+
+/initialize_and_mine.sh &
 exec bitcoind

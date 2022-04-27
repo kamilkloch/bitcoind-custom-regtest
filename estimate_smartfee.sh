@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 
+# Generates transactions until `bitcoin-cli estimatesmartfee` returns a valid estimate.
+# Assumes bitcoin for transactions is available on $WALLET_NAME
+
 # https://bitcoin.stackexchange.com/a/107319/133897
 
+# Stops the execution of a script if a command or pipeline has an error -
+# the opposite of the default shell behaviour, which is to ignore errors in scripts.
 set -eo pipefail
 
-BITCOIN_CLI_PARAMS="--rpcwallet=regtest_miner_wallet"
-BITCOIN_CLI_CMD="bitcoin-cli ${BITCOIN_CLI_PARAMS}"
+WALLET_NAME="regtest_miner_wallet"
+BITCOIN_CLI_CMD="bitcoin-cli --rpcwallet=${WALLET_NAME}"
 
 newaddress=$(${BITCOIN_CLI_CMD} getnewaddress)
 
