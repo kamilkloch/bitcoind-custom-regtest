@@ -6,10 +6,13 @@
 # the opposite of the default shell behaviour, which is to ignore errors in scripts.
 set -euo pipefail
 
-BTC_ADDRESS=`bitcoin-cli -regtest getnewaddress`
+WALLET_NAME="regtest_miner_wallet"
+BITCOIN_CLI_CMD="bitcoin-cli -regtest --rpcwallet=${WALLET_NAME}"
+
+BTC_ADDRESS=$(${BITCOIN_CLI_CMD} getnewaddress)
 
 while true
 do
-    bitcoin-cli -regtest generatetoaddress 1 $BTC_ADDRESS
+    ${BITCOIN_CLI_CMD} generatetoaddress 1 $BTC_ADDRESS
     sleep 60
 done

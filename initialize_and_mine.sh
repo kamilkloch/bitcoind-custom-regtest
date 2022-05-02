@@ -9,5 +9,5 @@ set -euo pipefail
 
 /create_miner_wallet.sh
 /pre-mine.sh
-/estimate_smartfee.sh
+/estimate_smartfee.sh &
 exec /mine.sh

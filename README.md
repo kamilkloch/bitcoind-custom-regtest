@@ -5,8 +5,10 @@ Patched version of Bitcoin regtest:
   - halving occurs every 210 000 blocks, instead of default 150
   - `regtest_miner_wallet` created
   - 200k BTC mined and deposited into the `regtest_miner_wallet` 
-  - running mining script which generates a new block every minute
-  - estimatesmartfee (https://bitcoincore.org/en/doc/22.0.0/rpc/util/estimatesmartfee/) is initialized
+  - mining script which generates a new block every minute
+  - estimatesmartfee script, which periodically (30s) checks if estimatesmartfee is valid
+    (https://bitcoincore.org/en/doc/22.0.0/rpc/util/estimatesmartfee/), and if is it not valid,
+    generates transactions until it becomes valid
 
 GitHub Repository is available at [kamilkloch/bitcoind-custom-regtest](https://github.com/kamilkloch/bitcoind-custom-regtest).
 
