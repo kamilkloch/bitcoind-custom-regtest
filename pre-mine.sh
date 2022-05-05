@@ -6,7 +6,7 @@
 # the opposite of the default shell behaviour, which is to ignore errors in scripts.
 set -euo pipefail
 
-DESIRED_WALLET_BALANCE=200000
+DESIRED_WALLET_BALANCE=100000
 WALLET_NAME="regtest_miner_wallet"
 BITCOIN_CLI_CMD="bitcoin-cli --rpcwallet=${WALLET_NAME}"
 
