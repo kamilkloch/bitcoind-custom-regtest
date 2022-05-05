@@ -2,7 +2,7 @@
 
 # Generates transactions until `bitcoin-cli estimatesmartfee` returns a valid estimate.
 # Assumes bitcoin for transactions is available on $SOURCE_WALLET
-# Runs periodically every 30s.
+# Runs periodically every 60s.
 
 # https://bitcoin.stackexchange.com/a/107319/133897
 

@@ -3,10 +3,11 @@
 Patched version of Bitcoin regtest:
   - halving interval increased to mainnet and testnet values
   - halving occurs every 210 000 blocks, instead of default 150
-  - `regtest_miner_wallet` created
-  - 200k BTC mined and deposited into the `regtest_miner_wallet` 
+  - `regtest_miner_wallet` and `regtest_smartfee_wallet` created
+  - 100k BTC mined and deposited into the `regtest_miner_wallet`
+  - Transaction with random fee (1-20sats/byte) from `regtest_miner_wallet` to `regtest_smartfee_wallet`, every ~10s.
   - mining script which generates a new block every minute
-  - estimatesmartfee script, which periodically (30s) checks if estimatesmartfee is valid
+  - estimatesmartfee script, which periodically (60s) checks if estimatesmartfee is valid
     (https://bitcoincore.org/en/doc/22.0.0/rpc/util/estimatesmartfee/), and if is it not valid,
     generates transactions until it becomes valid
 
