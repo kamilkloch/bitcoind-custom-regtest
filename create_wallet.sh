@@ -14,7 +14,7 @@ set -euo pipefail
 WALLET_NAME="$1"
 
 if [ "$(bitcoin-cli -regtest listwallets | grep -c ${WALLET_NAME})" -eq "0" ]; then
-    bitcoin-cli -regtest -named createwallet wallet_name=${WALLET_NAME} load_on_startup=true descriptors=false
+    bitcoin-cli -regtest -named createwallet wallet_name=${WALLET_NAME} load_on_startup=true descriptors=true
 else
     echo Wallet ${WALLET_NAME} already present.
 fi
