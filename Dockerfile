@@ -4,7 +4,7 @@ FROM alpine as bitcoin-core
 RUN apk --no-cache add alpine-sdk autoconf automake pkgconfig python3 boost-dev build-base chrpath file \
     gnupg libevent-dev libressl libressl-dev libtool protobuf-dev zeromq-dev sqlite-dev
 
-ENV BITCOIN_VERSION=25.0
+ENV BITCOIN_VERSION=25.1
 
 RUN wget https://github.com/bitcoin/bitcoin/archive/v${BITCOIN_VERSION}.tar.gz
 RUN tar -xzf *.tar.gz \
