@@ -9,7 +9,7 @@ ENV BITCOIN_VERSION=25.1
 RUN wget https://github.com/bitcoin/bitcoin/archive/v${BITCOIN_VERSION}.tar.gz
 RUN tar -xzf *.tar.gz \
     && cd bitcoin-${BITCOIN_VERSION} \
-    && sed -i 's/consensus.nSubsidyHalvingInterval = 150/consensus.nSubsidyHalvingInterval = 210000/g' src/chainparams.cpp \
+    && sed -i 's/consensus.nSubsidyHalvingInterval = 150/consensus.nSubsidyHalvingInterval = 210000/g' src/kernel/chainparams.cpp \
     && ./autogen.sh \
     && ./configure LDFLAGS=-L`ls -d /opt/db`/lib/ CPPFLAGS=-I`ls -d /opt/db`/include/ \
     --prefix=/opt/bitcoin \
