@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # wait for the bitcoin node to bootstrap
-sleep 5
+sleep 10
 
 # Stops the execution of a script if a command or pipeline has an error -
 # the opposite of the default shell behaviour, which is to ignore errors in scripts.
